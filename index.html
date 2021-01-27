@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phoneRemoveBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phoneQuantity" type="text" class="form-control text-center" value="1">
+                           <button id="phoneAddBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$<span id="phoneTotalPrice"></span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="coverRemoveBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="coverQuantity" type="text" class="form-control text-center" value="1">
+                           <button id="coverAddBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$<span id="coverTotalPrice"></span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$<span id="subTotal"></span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$<span id="total"></span></h5>
                      </div>
                   </div>
                </div>
@@ -77,6 +77,96 @@
          </div>
       </div>
    </section>
+
+   <script>
+
+      const phonePrice = 1240;
+      document.getElementById("phoneTotalPrice").innerText = phonePrice;
+
+      // add phone item btn event handler
+      const addPhone = document.getElementById("phoneAddBtn");
+      addPhone.addEventListener("click", function () {
+
+         const newQuantity = addQuantity("phoneQuantity", +1);
+         document.getElementById("phoneQuantity").value = newQuantity;
+
+         updatePriceSpan(phonePrice, "phoneTotalPrice", newQuantity);
+
+         // const totalPhonePrice = document.getElementById("phoneTotalPrice").innerText;
+         // const subTotal = totalPhonePrice;
+         // console.log(subTotal)
+         // document.getElementById("subTotal").innerText = subTotal;
+         // document.getElementById("total").innerText = subTotal;
+      })
+
+      // remove phone item btn event handler
+      const removePhone = document.getElementById("phoneRemoveBtn");
+      removePhone.addEventListener("click", function () {
+
+         const newQuantity = addQuantity("phoneQuantity", -1);
+         document.getElementById("phoneQuantity").value = newQuantity;
+
+         updatePriceSpan(phonePrice, "phoneTotalPrice", newQuantity);
+      })
+
+      const coverPrice = 59;
+      document.getElementById("coverTotalPrice").innerText = coverPrice;
+
+      // add cover item btn event handler
+      const addCover = document.getElementById("coverAddBtn");
+      addCover.addEventListener("click", function () {
+
+         const newQuantity = addQuantity("coverQuantity", +1);
+         document.getElementById("coverQuantity").value = newQuantity;
+
+         updatePriceSpan(coverPrice, "coverTotalPrice", newQuantity);
+
+         // const coverTotalPrice = document.getElementById("coverTotalPrice").innerText;
+         // const subTotal = coverTotalPrice;
+         // console.log(subTotal)
+         // document.getElementById("subTotal").innerText = subTotal;
+         // document.getElementById("total").innerText = subTotal;
+      })
+
+      // remove cover item btn event handler
+      const removeCover = document.getElementById("coverRemoveBtn");
+      removeCover.addEventListener("click", function () {
+
+         const newQuantity = addQuantity("coverQuantity", -1);
+         document.getElementById("coverQuantity").value = newQuantity;
+
+         updatePriceSpan(coverPrice, "coverTotalPrice", newQuantity);
+      })
+      
+      function addQuantity(quantityId, value){
+         const quantity = document.getElementById(quantityId).value;
+         const currentQuantity = parseFloat(quantity);
+         const newQuantity = currentQuantity + value;
+         return newQuantity;
+      }
+
+      function updatePriceSpan(unitPrice, spanId, newQuantity) {
+         const currentPrice = parseFloat(unitPrice);
+         const updatedPrice = currentPrice * newQuantity;
+         document.getElementById(spanId).innerText = updatedPrice;
+
+         document.getElementById("subTotal").innerText = updatedPrice;
+
+      }
+
+      // const totalPhonePrice = document.getElementById("phoneTotalPrice").innerText;
+      // const phoneTotal = parseFloat(totalPhonePrice);
+      // console.log(phoneTotal)
+      // const totalCoverPrice = document.getElementById("coverTotalPrice").innerText;
+      // const coverTotal = parseFloat(totalCoverPrice);
+      // console.log(coverTotal)
+      //    const subTotal = phoneTotal + coverTotal;
+      //    console.log(subTotal)
+      //    document.getElementById("subTotal").innerText = subTotal;
+      //    document.getElementById("total").innerText = subTotal;
+
+      
+   </script>
 </body>
 
 </html>
