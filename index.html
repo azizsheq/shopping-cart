@@ -46,7 +46,6 @@
                            <button id="coverRemoveBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="coverQuantity" type="text" class="form-control text-center" value="1">
                            <button id="coverAddBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
-
                         </div>
                         <h5>$<span id="coverTotalPrice"></span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -70,9 +69,11 @@
                      </div>
                   </div>
                </div>
+
                <div class="col-md-12 pt-4 pb-4">
                   <button type="button" class="btn btn-success check-out">Check Out</button>
                </div>
+               
             </div>
          </div>
       </div>
@@ -91,12 +92,6 @@
          document.getElementById("phoneQuantity").value = newQuantity;
 
          updatePriceSpan(phonePrice, "phoneTotalPrice", newQuantity);
-
-         // const totalPhonePrice = document.getElementById("phoneTotalPrice").innerText;
-         // const subTotal = totalPhonePrice;
-         // console.log(subTotal)
-         // document.getElementById("subTotal").innerText = subTotal;
-         // document.getElementById("total").innerText = subTotal;
       })
 
       // remove phone item btn event handler
@@ -120,12 +115,6 @@
          document.getElementById("coverQuantity").value = newQuantity;
 
          updatePriceSpan(coverPrice, "coverTotalPrice", newQuantity);
-
-         // const coverTotalPrice = document.getElementById("coverTotalPrice").innerText;
-         // const subTotal = coverTotalPrice;
-         // console.log(subTotal)
-         // document.getElementById("subTotal").innerText = subTotal;
-         // document.getElementById("total").innerText = subTotal;
       })
 
       // remove cover item btn event handler
@@ -151,21 +140,11 @@
          document.getElementById(spanId).innerText = updatedPrice;
 
          document.getElementById("subTotal").innerText = updatedPrice;
+         document.getElementById("total").innerText = updatedPrice;
+      }      
 
-      }
-
-      // const totalPhonePrice = document.getElementById("phoneTotalPrice").innerText;
-      // const phoneTotal = parseFloat(totalPhonePrice);
-      // console.log(phoneTotal)
-      // const totalCoverPrice = document.getElementById("coverTotalPrice").innerText;
-      // const coverTotal = parseFloat(totalCoverPrice);
-      // console.log(coverTotal)
-      //    const subTotal = phoneTotal + coverTotal;
-      //    console.log(subTotal)
-      //    document.getElementById("subTotal").innerText = subTotal;
-      //    document.getElementById("total").innerText = subTotal;
-
-      
+      const phoneUpdatedPrice = document.getElementById("phoneQuantity").value;
+      console.log(phoneUpdatedPrice);
    </script>
 </body>
 
